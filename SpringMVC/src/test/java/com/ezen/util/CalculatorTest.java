@@ -1,7 +1,10 @@
 package com.ezen.util;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
 
 import org.junit.After;
 import org.junit.Before;
@@ -15,21 +18,21 @@ public class CalculatorTest {
 	static int i;
 	int a,b;
 	
-	@Before
-	public void before() {
-		System.out.println("Execute @Before (" + ++i + ")");
-		a=10;
-		b=20;
-	}
-	
-	@After
-	public void after() {
-		System.out.println("Execute @After (" + i + ")");
-	}
+//	@Before
+//	public void before() {
+//		System.out.println("Execute @Before (" + ++i + ")");
+//		a=10;
+//		b=20;
+//	}
+//	
+//	@After
+//	public void after() {
+//		System.out.println("Execute @After (" + i + ")");
+//	}
 
 	@Test
 	public void addtest() {
-		int result = calc.add(a, b);
+		int result = calc.add(10, 20);
 		assertEquals(30, result);
 	}
 	
@@ -63,7 +66,12 @@ public class CalculatorTest {
 	@Test
 	public void evenTest() {
 		int even = calc.even();
-		System.out.println(even);
+		boolean check = false;
+		
+		if (even % 2 == 0) {
+			check = true;
+		}
+		assertTrue(check);
 	}
 	
 	@Test
@@ -72,5 +80,70 @@ public class CalculatorTest {
 		
 		assertTrue(prime);
 	}
+	
+	// 강사님 풀이
+	
+	@Test
+	public void getEvenTest1() {
+		int num = calc.getEven();
+		assertTrue(num % 2 == 0);
+	}
+	
+	@Test
+	public void getEvenTest2() {
+		int num = calc.getEven();
+		assertTrue(num % 2 == 1);
+	}
+	
+	@Test
+	public void getEvenTest3() {
+		ArrayList<Integer> evens = new ArrayList<>();
+		
+		for (int i = 0; i < 20000; i++) {
+			evens.add(calc.getEven());
+		}
+		assertFalse("evens에 0이 발견되었습니다." , evens.contains(0));
+	}
+	
+	@Test
+	public void isPrimeTest1() {
+		assertTrue(calc.isPrime(13));
+	}
+	
+	@Test
+	public void isPrimeTest2() {
+		assertTrue(calc.isPrime(14));
+	}
+	
+	@Test
+	public void isPrimeTest3() {
+		assertTrue("1을 소수로 판별함" , calc.isPrime(1));
+	}
+	
+	@Test
+	public void isPrimeTest4() {
+		assertTrue("-7을 소수로 판별함" , calc.isPrime(-7));
+	}
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,82 @@
+06_Lonbok.txt
+
+	# Lonbok
+	
+	- 간단한 어노테이션 추가로 자바빈 스타일의 데이터 클래스를 자동 완성시켜주는 라이브러리
+	
+	# Lonbok 설치 과정
+	
+	1. 구글에 Lonbok 검색
+
+	2. Project Lombok 클릭
+	
+	3. 다운로드 클릭
+	
+	4. 다운 위치 정함
+	
+	5. 다운 받은 것 실행
+	
+	6. Specify location 클릭
+	
+	7. sts-bundle -> sys-3.9.18.RELEASE 선택 후 Select
+	
+	8. install / update 클릭
+	
+	9. Quit Installer 클릭
+	
+	10. 잘 추가되었는지 확인하려면 선택한 경로에 들어가 lombok.jar 가 추가 되어 있는지 확인
+	
+	11. maven repository에 lombok 검색
+	
+	12. 다운받은 lombok과 같은 버전인 1.18.24를 선택
+	
+	13. Marven에 있는 코드 복사
+	
+	14. pom.xml에 들어가 test 위에 추가 (위치는 상관 없음)
+	
+	15. 껏다 다시 실행하기
+	
+	# Lonbok의 어노테이션
+	
+	@Data에 포함되어 있는 것들
+	
+	- @Getter
+	- @Setter
+	- @ToString
+	- @EqualsAndHashCode
+	- @RequiredArgsConstructor
+	
+	@Getter
+	
+	- 모든 필드에 대해 Getter를 생성
+	
+	@Setter
+	
+	- 모든 필드에 대해 Setter를 생성
+	
+	@ToString
+	
+	- 해당 데이터 클래스의 toString을 생성
+	
+	@NoArgsConstructor
+	
+	- 기본 생성자를 생성
+	
+	@RequiredArgsConstructor
+	
+	- @NonNull이 붙은 필드만 포함된 생성자를 생성
+	
+	@AllArgsConstructor
+	
+	- 모든 필드를 포함한 생성자를 생성
+	
+	@EqualsAndHashCode
+	
+	- 해당 클래스의 equals와 hashCode 메서드를 자동 생성
+	
+	
+	
+	
+	
+	
+	

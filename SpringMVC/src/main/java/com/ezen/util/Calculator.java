@@ -26,6 +26,8 @@ public class Calculator {
 		}
 	}
 	
+	
+	
 	public boolean prime(int num) {
 		
 		boolean bool = false;
@@ -41,6 +43,41 @@ public class Calculator {
 		}
 		return bool;
 	}
-
 	
+	// ∞≠ªÁ¥‘ «Æ¿Ã
+	
+	public int getEven() {
+		int num = (int)(Math.random() * 10000);
+		return num % 2 == 0 ? num : num + 1;
+	}
+
+	public boolean isPrime(int num) {
+		
+		double sqrt = Math.sqrt(num);
+		
+		for (int i = 2; i <= sqrt; i++) {
+			if (num % i == 0) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

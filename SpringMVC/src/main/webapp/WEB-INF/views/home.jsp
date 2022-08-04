@@ -18,6 +18,10 @@
 	HOT : ${coffee.hot } <br>
 </p>
 
+<p>
+	coffee info : ${name }, ${price }, ${hot }
+</p>
+
 
 </body>
 </html>

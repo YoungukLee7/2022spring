@@ -1,12 +1,12 @@
-06_Lonbok.txt
+06_Lombok.txt
 
-	# Lonbok
+	# Lombok
 	
 	- 간단한 어노테이션 추가로 자바빈 스타일의 데이터 클래스를 자동 완성시켜주는 라이브러리
 	
-	# Lonbok 설치 과정
+	# Lombok 설치 과정
 	
-	1. 구글에 Lonbok 검색
+	1. 구글에 Lombok 검색
 
 	2. Project Lombok 클릭
 	
@@ -36,7 +36,7 @@
 	
 	15. 껏다 다시 실행하기
 	
-	# Lonbok의 어노테이션
+	# Lombok의 어노테이션
 	
 	@Data에 포함되어 있는 것들
 	

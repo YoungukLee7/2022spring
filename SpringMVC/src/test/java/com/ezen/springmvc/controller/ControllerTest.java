@@ -3,11 +3,13 @@ package com.ezen.springmvc.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -52,4 +54,12 @@ public class ControllerTest {
 		}
 	}
 
+	@Test
+	public void shouldSaveUploadFile() throws Exception {
+		MockMultipartFile multipartFile = new MockMultipartFile("file", "test.txt",
+				"text/plain","My File Upload Test...".getBytes());
+		
+		mockMvc.perform(multipart("/fileupload/").file(multipartFile));
+	}
+	
 }

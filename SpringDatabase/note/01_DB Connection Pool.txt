@@ -1,0 +1,41 @@
+
+	# 커넥션 풀 (DBCP, Database Connection Pool)
+	
+	- 필요할 떄 마다 db와 새로운 연결을 만드는 것이 아니라
+	  미리 만들어놓은 연결을 사용하여 새로운 연결을 계속해서 생성하는 자원의 낭비를 없에는 방법
+	  
+	- 만들어놓은 db연결 객체들을 저장해놓은 곳을 Pool이라고 한다
+	
+	- 매번 데이터베이스에 새로운 연결을 맺는 것은 속도가 느리기 때문에
+	  커넥션 풀에서 이미 만들어진 연결을 꺼내 사용하면 쿼리문의 처리 속도가 매우 빨라진다
+	  
+	- 웹 서버가 실행될 때 연결을 미리 설정한 만큼 생성해 두는 방식을 사용한다
+	
+	# 유명 커넥션 풀 라이브러리
+	
+	- Apache Commons DBCP
+	- HikariCP
+	
+	# HikariCP dependency
+	
+	<dependency>
+   		<groupId>com.zaxxer</groupId>
+   		<artifactId>HikariCP</artifactId>
+  		<version>4.0.3</version>
+	</dependency>
+	
+	# HikariCP root-context
+	
+	<!-- HikariTest를 여기에 등록 -->
+		<bean id="config" class="com.zaxxer.hikari.HikariConfig">
+			<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+			<property name="jdbcUrl" value="jdbc:oracle:thin:/@localhost:1521:XE"/>
+			<property name="username" value="hr"/>
+			<property name="password" value="1234"/>
+		</bean>
+		
+		<bean id="ds" class="com.zaxxer.hikari.HikariDataSource">
+			<!-- 위에 config를 참조하는 데이터 변수가 됨 (빈 그래프에서 확인 가능) -->
+			<constructor-arg ref="config"/>
+		</bean>
+	

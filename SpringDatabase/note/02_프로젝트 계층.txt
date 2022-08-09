@@ -1,0 +1,70 @@
+
+	# 프로젝트 계층
+	
+	- 프로젝트를 구성하는 소스 코드들을 계층별로 분류한 것
+	- 화면 계층 (Presetation Layer)
+	- 비지니스 계층 (Business Layer)
+	- 영속 계층 (Persistence Layer)
+	
+	# 화면 계층 (Presetation Layer)
+	
+	- 화면에 보여지는 코드를 작성하는 계층
+	- view들을 의미함
+	
+	# 비지니스 계층 (Business Layer)
+	
+	- 고객의 요구사항을 구현하는 코드 계층
+	- MVC Controller 중에서도 고객의 요구사항은 구현하는 부분을 의미한다
+	- @Service 어노테이션을 통해 컴포넌트로 등롥해 사용한다
+	- JAVA
+	
+	# 영속 계층 (Persistence Layer)
+	
+	- 데이터베이스와 관련된 작업을 구현하는 코드 계층
+	- MVC Controller 중에서도 DB에 접근하는 부분을 의미한다
+	- Mybatis, JPA, ...
+	
+	사원 추가 (비지니스 로직(서비스)) - job_id 조회, department_id 조회 (영속 계층)
+	사원 수정 (비지니스 로직(서비스)) - job_id 조회, department_id 조회 (영속 계층)
+	
+	# 웹 프로젝트의 각 계층 별 클래스 이름 규칙
+	
+	- 컨트롤러 클래스 : xxxController
+	- 비지니스 로직 클래스 : xxxService(인터페이스), xxxServiceImpl(해당 인터페이스 구현 클래스)
+	- 영속 계층 클래스 : xxxMapper, xxxDAO, xxxRepository (DB에 접근하는 소스들)
+	- 데이터 클래스 : xxxVO (Getter만), xxxDTO (Getter/Setter)
+	
+	# 웹 프로젝트 페키지 나누는 방식
+	
+	- 프로젝트 규모가 작은 경우
+	
+	컨트롤러, 비지니스 계층, 영속 계층을 구분할 수 있도록 패키지를 작성한다
+	
+	ex > com.company.coffeeshop.controller 
+	ex > com.company.coffeeshop.service
+	ex > com.company.coffeeshop.dao
+	
+	- 프로젝트 규모가 큰 경우
+	
+	우선 비지니스 단위별로 패키지 구분을 한 후 , 내부에서 컨트롤러, 서비스, dao를 구분한다
+	
+	ex > com.company.coffeeshop.menu.controller 
+	ex > com.company.coffeeshop.menu.employee.service
+	ex > com.company.coffeeshop.menu.employee.dao
+	
+	ex > com.company.coffeeshop.employee.controller 
+	ex > com.company.coffeeshop.employee.service
+	ex > com.company.coffeeshop.employee.dao
+	
+	ex > com.company.coffeeshop.membership.controller 
+	ex > com.company.coffeeshop.membership.service
+	ex > com.company.coffeeshop.membership.dao
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -31,7 +31,7 @@
 			// 1. add1을 누르면 /springmvc/hello/coffee/add1로 submit
 			
 			const btn1 = document.getElementById("btn1"); 
-			const form = document.getElementById("add"); 
+			const form = document.getElementById("add1"); 
 			
 			btn1.addEventListener('click' , (e) => {
 				form.action = '/springmvc/hello/coffee/add1';

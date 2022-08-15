@@ -27,7 +27,23 @@ public class PizzaTest {
 	public void getPizza() {
 		List<Pizza> pizza = mapper.getList();
 		
-		log.info(pizza);
+		//log.info(pizza);
+	}
+	
+	@Test
+	public void insertPizza() {
+		mapper.insert("ÇÇ¸ÁÇÇÀÚ", 1000, 100.01);
+		
+		List<Pizza> pizza = mapper.getList();
+		
+		//log.info(pizza);
+	}
+	
+	@Test
+	public void find() {
+		log.info(mapper.findId(4)); 
+		
+		
 	}
 
 }

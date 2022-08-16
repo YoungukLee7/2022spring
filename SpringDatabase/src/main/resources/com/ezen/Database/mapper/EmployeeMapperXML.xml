@@ -9,4 +9,9 @@
    <select id="getListByDept" resultType="com.ezen.Database.dto.Employee">
    		SELECT * FROM employees where department_id = #{department_id}
    </select>
+   <select id="getListBetweenDept" resultType="com.ezen.Database.dto.Employee">
+   		SELECT * FROM employees WHERE
+   		department_id &gt;= #{lower_dept} AND department_id &lt;= #{upper_dept}
+   		ORDER BY department_id ASC   		
+   </select>
 </mapper>

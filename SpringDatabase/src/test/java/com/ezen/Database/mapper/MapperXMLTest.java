@@ -18,11 +18,16 @@ public class MapperXMLTest {
 	
 	@Test
 	public void test() {
-		log.info(mapper.getList());
+		//log.info(mapper.getList());
 	}
 	
 	@Test
 	public void test2() {
-		log.info(mapper.getListByDept(50));
+		//log.info(mapper.getListByDept(50));
+	}
+	
+	@Test
+	public void test3() {
+		log.info(mapper.getListBetweenDept(30, 30));
 	}
 }

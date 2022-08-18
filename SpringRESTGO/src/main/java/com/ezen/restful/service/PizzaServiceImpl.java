@@ -33,4 +33,14 @@ public class PizzaServiceImpl implements PizzaService{
 		return mapper.getAll();
 	}
 
+	@Override
+	public Integer updatePizza(Pizza pizza) {
+		return mapper.update(pizza);
+	}
+
+	@Override
+	public Integer insertPizza(Pizza pizza) {
+		return mapper.insert(pizza);
+	}
+
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ezen.restful.dto.Pizza;
+import com.ezen.restful.service.AjaxService;
 import com.ezen.restful.service.PizzaService;
 
 import lombok.extern.log4j.Log4j;
@@ -24,7 +25,7 @@ import lombok.extern.log4j.Log4j;
 public class HomeController {
 	
 	@Autowired
-	PizzaService service;
+	AjaxService ajaxService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -44,9 +45,9 @@ public class HomeController {
 	@GetMapping("/ajax")
 	public String ajax(Model model) {
 		
-		List<Pizza> pizza = service.getAllPizza();
+		List<Pizza> pizza = ajaxService.getPizzaList();
 		
-		model.addAttribute("allpizzas", pizza );
+		model.addAttribute("pizzas", pizza );
 		
 		return "ajax";
 	}

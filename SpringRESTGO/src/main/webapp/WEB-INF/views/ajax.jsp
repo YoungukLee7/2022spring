@@ -33,20 +33,33 @@
 		<hr>
 		
 		<!-- Hint : select 태그에서 무언가를 선택했을 때 발생하는 이벤트가 있다 -->
-		name: <select id="selectall">
-					<c:forEach items="${allpizzas }" var="allpizza">
-					<option value="${allpizza.pizza_name }">${allpizza.pizza_name }</option>
-					
+		name: <select id="select-pizza-name" name="name">
+					<c:forEach items="${pizzas }" var="pizza">
+					<option value="${pizza.pizza_id }">${pizza.pizza_name }</option>
 					</c:forEach>				  
 			  </select> <br>
-		price: <input type="text" placeholder="피자를 선택하면 값이 채워집니다" value="${onlypizza.pizza_price }"/> <br>
-		calories: <input type="text" placeholder="피자를 선택하면 값이 채워집니다" value="${onlypizza.pizza_calories }"/> <br>
-		pizza_id: <input type="text" placeholder="피자를 선택하면 값이 채워집니다" value="${onlypizza.pizza_id }" readonly/> <br>
-
-
-		<form action=""></form>
+		price: <input type="text" id="input-pizza-price" placeholder="피자를 선택하면 값이 채워집니다" /> <br>
+		calories: <input type="text" id="input-pizza-calories" placeholder="피자를 선택하면 값이 채워집니다" /> <br>
+		pizza_id: <input type="text" id="input-pizza-id" placeholder="피자를 선택하면 값이 채워집니다" readonly/> <br>
+		<input id="input-pizza-name" type="hidden" />
 		
 		<button id="btn-xhttp-put">xhttp put 해보기 (update)</button>
+		
+		<hr>
+		
+		<div id="out2">아직 수정 전입니다.</div>
+		
+		<hr>
+		
+		price: 		<input type="text" id="post-pizza-price" /> <br>
+		calories: 	<input type="text" id="post-pizza-calories" /> <br>
+		name:		<input type="text" id="post-pizza-name" /> <br>
+		
+		<button id="btn-xhttp-post">xhttp post 해보기 (insert)</button>
+		
+		<hr>
+		
+		<div id="out3">아직 추가 전입니다.</div>
 		
 		<hr>
 

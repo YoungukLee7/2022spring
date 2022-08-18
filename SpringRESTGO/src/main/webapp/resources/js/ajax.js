@@ -1,14 +1,52 @@
 
 const btn1 = document.getElementById('btn-xhttp');
+const btn2 = document.getElementById('btn-xhttp-put');
+const btn3 = document.getElementById('btn-xhttp-post');
+
 const out = document.getElementById('out'); 
-const selectall = document.getElementById('selectall');
+const out2 = document.getElementById('out2'); 
+const out3 = document.getElementById('out3'); 
+
+const select1 = document.getElementById('select-pizza-name');
+
+const input_pizza_name = document.getElementById('input-pizza-name');
+const input_pizza_price = document.getElementById('input-pizza-price');
+const input_pizza_calories = document.getElementById('input-pizza-calories');
+const input_pizza_id = document.getElementById('input-pizza-id');
+
+const post_pizza_name = document.getElementById('post-pizza-name');
+const post_pizza_price = document.getElementById('post-pizza-price');
+const post_pizza_calories = document.getElementById('post-pizza-calories');
+
+const xhttp2 = new XMLHttpRequest();
+
+xhttp2.addEventListener('readystatechange', (e) => {
+	const readyState = e.target.readyState;
+	
+	if (readyState == 4) {
+		const responseText = e.target.responseText;
+		const pizza = JSON.parse(responseText);
+		
+		input_pizza_calories.value = pizza.pizza_calories;
+		input_pizza_price.value = pizza.pizza_price;
+		input_pizza_id.value = pizza.pizza_id;
+		input_pizza_name.value = pizza.pizza_name;
+	}
+});
+
+select1.addEventListener('change', (e) => {
+    //console.log('select tag event:', e);
+    //console.log('selected option:', e.target.value);
+    xhttp2.open('GET', '/restful/sample/pizza/' + e.target.value);
+    xhttp2.send();
+})
 
 // AJAX
 
-// 1. Ajax¸¦ À§ÇÑ xhttp ÀÎ½ºÅÏ½º »ý¼º
+// 1. Ajaxë¥¼ ìœ„í•œ xhttp ì¸ìŠ¤í„´ìŠ¤ ìƒì„±
 const xhttp = new XMLHttpRequest();
 
-// 2. xhttp ¿¡ ÀÌº¥Æ® »ý¼º
+// 2. xhttp ì— ì´ë²¤íŠ¸ ìƒì„±
 xhttp.addEventListener('readystatechange' , (e) => {
     //console.log('readystate event: ', e);
 
@@ -16,22 +54,22 @@ xhttp.addEventListener('readystatechange' , (e) => {
     const responseText = e.target.responseText;
 
     if (readyState == 1) {
-        console.log('¼­¹ö·Î ºñµ¿±â ¿äÃ»À» º¸³Â´Ù');
+        console.log('ì„œë²„ë¡œ ë¹„ë™ê¸° ìš”ì²­ì„ ë³´ëƒˆë‹¤');
     }else if (readyState == 2) {
-        console.log('¼­¹ö°¡ ³» ¿äÃ»À» ¹Þ¾Ò´Ù');
+        console.log('ì„œë²„ê°€ ë‚´ ìš”ì²­ì„ ë°›ì•˜ë‹¤');
     }else if (readyState == 3) {
-        console.log('¼­¹ö°¡ ³» ¿äÃ»¿¡ ´ëÇÑ Ã³¸®¸¦ ½ÃÀÛÇß´Ù');
+        console.log('ì„œë²„ê°€ ë‚´ ìš”ì²­ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ ì‹œìž‘í–ˆë‹¤');
     }else if (readyState == 4) {
-        console.log('¼­¹öÀÇ Ã³¸®°¡ ³¡³ª°í ³» ¿äÃ»¿¡ ´ëÇÑ ÀÀ´äµµ µµÂøÇß´Ù');
-        console.log('ÀÀ´äÀº responseText¿¡ µé¾îÀÖ´Ù',responseText);
+        console.log('ì„œë²„ì˜ ì²˜ë¦¬ê°€ ëë‚˜ê³  ë‚´ ìš”ì²­ì— ëŒ€í•œ ì‘ë‹µë„ ë„ì°©í–ˆë‹¤');
+        console.log('ì‘ë‹µì€ responseTextì— ë“¤ì–´ìžˆë‹¤',responseText);
 
-    // 5. JSON ¹®ÀÚ¿­ -> Javascript Object·Î º¯È¯
+    // 5. JSON ë¬¸ìžì—´ -> Javascript Objectë¡œ ë³€í™˜
     const pizza = JSON.parse(responseText);
 
     console.log('pizza name: ', pizza.pizza_name);
     console.log('pizza calories: ', pizza.pizza_calories);
 
-    // ¹Þ¾Æ¿Â µ¥ÀÌÅÍ È°¿ë
+    // ë°›ì•„ì˜¨ ë°ì´í„° í™œìš©
     const pizzaDiv = document.createElement('div');
 
     pizzaDiv.innerText = `${pizza.pizza_name}/${pizza.pizza_calories}/${pizza.pizza_price}`;
@@ -44,12 +82,104 @@ xhttp.addEventListener('readystatechange' , (e) => {
 });
 
 btn1.addEventListener('click' , (e) => {
-    // 3. »õ·Î¿î xhttp ¿¬°áÀ» ¼³Á¤
+    // 3. ìƒˆë¡œìš´ xhttp ì—°ê²°ì„ ì„¤ì •
     xhttp.open('GET', '/restful/sample/pizza/1');
-    // 4. ¿øÇÏ´Â Å¸ÀÌ¹Ö¿¡ ¿äÃ»À» Àü¼Û
+    // 4. ì›í•˜ëŠ” íƒ€ì´ë°ì— ìš”ì²­ì„ ì „ì†¡
     xhttp.send();
 });
 
-var selectPizza = function(value) {
-    $("changeInput").val(value);
-}
+const xhttp3 = new XMLHttpRequest();
+
+xhttp3.addEventListener('readystatechange' , (e) => {
+	// put ë°©ì‹ìœ¼ë¡œ ìš”ì²­ì´ ë„ì°©í–ˆì„ ë•Œ í™•ì¸
+	const readyState = e.target.readyState;
+	
+	if (readyState == 4) {
+	const responseText = e.target.responseText;
+	
+	if (responseText == 1) {
+		out2.innerText = 'SUCCESS';
+		out2.style.color = 'green';
+	} else {
+		out2.innerText = responseText;
+		out2.style.color = 'red';
+	}
+}		
+});
+
+btn2.addEventListener('click' , (e) => {
+	//console.log('input pizza id value: ', input_pizza_id.value);
+	//console.log('input pizza name value: ', input_pizza_name.value);
+	//console.log('input pizza price value: ', input_pizza_price.value);
+	//console.log('input pizza calories value: ', input_pizza_calories.value);
+	
+	const pizza = {
+		pizza_id:		input_pizza_id.value,
+		pizza_name:		input_pizza_name.value,
+		pizza_price:	input_pizza_price.value,
+		pizza_calories:	input_pizza_calories.value
+	};
+	
+	// GETë°©ì‹ì€ ì£¼ì†Œ ë’¤ì— ?name=value&... ë¡œ ì‹¤ì–´ ë³´ë‚´ë©´ ë˜ì§€ë§Œ
+	// ê·¸ ì™¸ì˜ ë°©ì‹ì€ send() ë©”ì„œë“œì— ë°ì´í„°ë¥¼ ì‹¤ì–´ ë³´ë‚¸ë‹¤
+    xhttp3.open('PUT', '/restful/sample/pizza');
+    
+    //xhr ìš”ì²­ í—¤ë” ì„¤ì • (JSON í˜•ì‹ìœ¼ë¡œ ë³´ë‚¸ë‹¤ê³  ì„œë²„ì— ì•Œë ¤ì•¼ í•œë‹¤)
+    xhttp3.setRequestHeader('Content-type', 'application/json;charset=UTF-8')
+    
+    //xhttp3.send("{'name':${input_pizza_id.value}}");
+    // Object -> JSON (stringify) ìœ„ì— ë°©ë²•ì„ ê°„ì†Œí™” í•œ ë¬¸ë²•
+    console.log('JSON string: ', JSON.stringify(pizza));
+    xhttp3.send(JSON.stringify(pizza));
+    
+});
+
+const xhttp4 = new XMLHttpRequest();
+
+xhttp4.addEventListener('readystatechange' , (e) => {
+	// put ë°©ì‹ìœ¼ë¡œ ìš”ì²­ì´ ë„ì°©í–ˆì„ ë•Œ í™•ì¸
+	const readyState = e.target.readyState;
+	
+	if (readyState == 4) {
+	const responseText = e.target.responseText;
+	
+	console.log(responseText);
+	//if (responseText == 1) {
+	//	out3.innerText = 'SUCCESS';
+	//	out3.style.color = 'green';
+	//} else {
+	//	out3.innerText = 'FAILED';
+	//	out3.style.color = 'red';
+	//}
+	}		
+});
+
+btn3.addEventListener('click' , (e) => {
+
+	const pizza = {
+		pizza_name:		post_pizza_name.value,
+		pizza_price:	post_pizza_price.value,
+		pizza_calories:	post_pizza_calories.value
+	};
+	
+	console.log(pizza);
+
+	xhttp4.open('POST', '/restful/sample/pizza');
+    xhttp4.setRequestHeader('Content-type', 'application/json;charset=UTF-8')
+    xhttp4.send(JSON.stringify(pizza));
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -14,7 +14,22 @@
    </update>
    
    <select id="getAll" resultType="com.ezen.restful.dto.Pizza">
-       SELECT * FROM pizza
+       SELECT * FROM pizza ORDER BY pizza_id asc
    </select>
+   
+   <update id="update">
+   		UPDATE pizza 
+   		SET 
+   			pizza_name = #{pizza_name},
+   			pizza_price = #{pizza_price},
+   			pizza_calories = #{pizza_calories} 
+   		WHERE 
+   			pizza_id = #{pizza_id}
+   </update>
+   
+   <insert id="insert">
+   		INSERT INTO pizza (pizza_id, pizza_name, pizza_price, pizza_calories)
+   		VALUES (pizza_seq.nextval, #{pizza_name}, #{pizza_price}, #{pizza_calories})
+   </insert>
    
 </mapper>

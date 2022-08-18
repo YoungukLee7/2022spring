@@ -14,5 +14,9 @@ public interface PizzaMapper {
 	
 	// 피자 전체 조회하기
 	List<Pizza> getAll();
+	
+	Integer update(Pizza pizza);
+	
+	Integer insert(Pizza pizza);
 
 }

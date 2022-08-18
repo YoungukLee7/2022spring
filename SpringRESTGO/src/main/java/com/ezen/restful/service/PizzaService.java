@@ -9,5 +9,9 @@ public interface PizzaService {
 	public Pizza getPizza(int pk);
 	
 	public List<Pizza> getAllPizza();
+	
+	public Integer updatePizza(Pizza pizza);
+
+	public Integer insertPizza(Pizza pizza);
 
 }

@@ -3,6 +3,7 @@ package com.ezen.restful;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -36,15 +37,44 @@ public class PizzaRestController {
 		// PUT방식으로 파라미터의 피자 데이터와 함께 요청 보내면 해당 피자를 db에 추가
 		
 		@PostMapping(value = "/sample/pizza")
-		public Integer insertPizza(@RequestBody Pizza pizza) {
-			// ReaponseEntity: 상항에 따라 원하는 응답을 만들 수 있다 (상태 코드 활용)
-			//ReaponseEntity<Pizza>
+		public ResponseEntity<Pizza> insertPizza(@RequestBody Pizza pizza) {
 			
-			try {				
-				return service.insertPizza(pizza);
-			} catch (Exception e) {
-				return -1;
+			// String은 null만 체크해주면 안되고 빈값도 봐줘야 한다. (나머지는 null로만 가능)
+			if (pizza.getPizza_name() == null || pizza.getPizza_name().trim().equals("") || 
+				pizza.getPizza_calories() == null || pizza.getPizza_price() == null) {
+				return ResponseEntity.badRequest().build();
 			}
+			
+			try {
+				service.insertPizza(pizza);
+				return ResponseEntity.ok().build();
+			} catch (Exception e) {
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+						.build();
+			}
+			
+			// ResponseEntity: 상항에 따라 원하는 응답을 만들 수 있다 (Http상태 코드 활용)
+
+			//ResponseEntity<Pizza> response = null;
+			
+			// ResponseEntity.ok() : Http 상태코드 200의 응답을 만든다.
+			//response = ResponseEntity.ok(null);
+			
+			// ResponseEntity.notFound() : http 상태코드 404의 응답을 만든다
+			//response = ResponseEntity.notFound().build();
+			
+			// 자유롭게 응답을 만들기
+//			response = ResponseEntity.status(HttpStatus.OK)
+//					.contentType(MediaType.APPLICATION_JSON)
+//					.body(service.getPizza(3));
+//			
+//			return response;
+			
+//			try {				
+//				return service.insertPizza(pizza);
+//			} catch (Exception e) {
+//				return -1;
+//			}
 			
 		}
 		
@@ -61,11 +91,11 @@ public class PizzaRestController {
 		public String updatePizza(@RequestBody Pizza pizza) {
 			//log.info("받은 피자: " + pizza);
 			
-//			try {				
+			try {				
 				return service.updatePizza(pizza).toString();
-//			} catch (Exception e) {
-//				return "0: " + e;
-//			}
+			} catch (Exception e) {
+				return "0: " + e;
+			}
 		}
 		
 		// DELETE 방식으로 피자의 아이디와 함께 요청을 보내면 해당 피자를 db에서 삭제

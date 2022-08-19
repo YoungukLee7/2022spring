@@ -141,16 +141,25 @@ xhttp4.addEventListener('readystatechange' , (e) => {
 	const readyState = e.target.readyState;
 	
 	if (readyState == 4) {
-	const responseText = e.target.responseText;
+	//const responseText = e.target.responseText;
+	// e.target.status에 컨트롤러에서 민들어서 보낸 http 상태 코드가 들어있다.
+	const httpStatus = e.target.status;
 	
-	console.log(responseText);
-	//if (responseText == 1) {
-	//	out3.innerText = 'SUCCESS';
-	//	out3.style.color = 'green';
-	//} else {
-	//	out3.innerText = 'FAILED';
-	//	out3.style.color = 'red';
-	//}
+	console.log('xhr4 http status: ', httpStatus);
+
+	if (httpStatus == 200) {
+		console.log('200 ok arrived');
+		out3.style.color = 'green';
+		out3.innerText = '200 ok arrived';
+	}else if (httpStatus == 500) {
+		console.log('500 internal server error arrived');
+		out3.style.color = 'red';
+		out3.innerText = '500 internal server error arrived';
+	}else if (httpStatus == 400) {
+		console.log('400 bad request arrived');
+		out3.style.color = 'orange';
+		out3.innerText = '400 null value detected';
+	}
 	}		
 });
 

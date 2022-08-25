@@ -13,4 +13,6 @@ public interface PizzaService {
 	public Pizza updatePizzaForm(int id);
 	
 	public Integer updatePizza(Pizza pizza);
+	
+	public Integer deletePizza(int id);
 }

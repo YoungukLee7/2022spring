@@ -66,5 +66,15 @@ public class PizzaController {
 		return "redirect:/pizza/list";
 	}
 	
+	@GetMapping("/delete")
+	public String PizzaDelete(Integer id) {
+		
+		log.info("지우는 아이디" + id);
+		
+		service.deletePizza(id);
+		
+		return "redirect:/pizza/list";
+	}
+	
 
 }

@@ -16,4 +16,6 @@ public interface PizzaMapper {
 	 
 	 public int update(Pizza pizza);
 	 
+	 public int delete(int id);
+	 
 }

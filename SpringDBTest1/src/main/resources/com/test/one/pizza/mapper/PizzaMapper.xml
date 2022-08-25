@@ -26,4 +26,9 @@
    		pizza_calories = #{pizza_calories} WHERE pizza_id = #{pizza_id}
    </update>
    
+   <delete id="delete">
+    	delete from pizza where pizza_id = #{id}
+   </delete>
+
+   
 </mapper>

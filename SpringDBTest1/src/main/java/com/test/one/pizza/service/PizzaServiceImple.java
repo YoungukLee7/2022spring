@@ -51,6 +51,11 @@ public class PizzaServiceImple implements PizzaService {
 		return pizzaMapper.update(pizza);
 	}
 
+	@Override
+	public Integer deletePizza(int id) {
+		return pizzaMapper.delete(id);
+	}
+
 
 
 }

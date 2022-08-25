@@ -29,5 +29,4 @@
 		
 		
 		<mybatis-spring:scan base-package="com.test.one.pizza.mapper"/>
-		<mybatis-spring:scan base-package="com.test.one.employee.mapper"/>
 </beans>

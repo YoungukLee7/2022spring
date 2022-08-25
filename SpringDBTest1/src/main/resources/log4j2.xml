@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<configuration status="info">
+ 
+    <Appenders>
+        <!-- 콜솔 -->
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd hh:mm:ss} %5p [%c] %m%n"/>
+        </Console>
+        
+        <File name="log4jdbc_file" fileName="log4jdbc.out">
+     		 <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %level - %m%n%ex%n"/>
+    	</File>
+    	
+    </Appenders>
+    
+    <loggers>
+    	
+    	<logger name="org.springframework" level="info" additivity="false" >
+         	<AppenderRef ref="console" />
+       	</logger>
+       	
+       	 <logger name="log4jdbc.log4j2" level="info" additivity="false">
+       	 	 <!-- 이것으로 다양하게 설정 가능 -->
+       	 	 <MarkerFilter marker="LOG4JDBC_CONNECTION" onMatch="ACCEPT" onMismatch="DENY"/>
+      		<appender-ref ref="console"/>
+   		 </logger>
+    	
+        <root level="info" additivity="true">
+            <AppenderRef ref="console"/>
+        </root>
+    </loggers>
+ 
+</configuration>
